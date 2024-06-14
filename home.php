@@ -6,6 +6,6 @@
         <span class="text-orange-500">Ku</span>
     </h1>
     <div class="ml-6">
-        <img src="asset/image 1.png" alt="" class="max-w-lg rounded-lg shadow-2xl" />
+        <img src="asset/image 1.png" alt="" class="max-w-7xl rounded-lg shadow-2xl" />
     </div>
 </section>
