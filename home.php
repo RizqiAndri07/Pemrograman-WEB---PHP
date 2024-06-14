@@ -7,5 +7,6 @@
     </h1>
     <div class="ml-6">
         <img src="asset/image 1.png" alt="" class="max-w-7xl rounded-lg shadow-2xl" />
+        <div></div>
     </div>
 </section>
