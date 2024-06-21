@@ -1,3 +1,6 @@
+<?php
+session_start()
+  ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,27 +36,47 @@
           class="flex flex-col p-4 md:p-0 mt-4 font-medium  rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 ">
           <li>
             <a href="index.php"
-              class="text-white hover:bg-white hover:text-black focus:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+              class="text-white hover:bg-white hover:text-black transition hover:duration-300 ease-in-out focus:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Home</a>
           </li>
           <li>
             <a href="index.php?target=product"
-              class="text-white hover:bg-white hover:text-black focus:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Product</a>
+              class="text-white hover:bg-white transition hover:duration-300 ease-in-out hover:text-black focus:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Product</a>
           </li>
           <li>
             <a href="index.php?target=form"
-              class="text-white hover:bg-white hover:text-black focus:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Contact
+              class="text-white hover:bg-white hover:text-black transition hover:duration-300 ease-in-out focus:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Contact
               Us</a>
           </li>
         </ul>
       </div>
 
 
-      <!-- Modal toggle -->
-      <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
-        class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        type="button">
-        Toggle modal
-      </button>
+      <div class="flex gap-2">
+        <?php
+        if (isset($_SESSION["admin_logged_in"]) && $_SESSION["admin_logged_in"] === true):
+          ?>
+          <a href="admin/index.php"
+            class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Dashboard</a>
+
+          <!-- Modal toggle -->
+          <form method="POST" action="action.php" name="logout">
+            <button type="submit"
+              class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+              Log out</button>
+          </form>
+
+          <?php
+        else:
+          ?>
+          <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
+            class="block text-white bg-black hover:bg-white hover:text-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 transition hover:duration-300 ease-in-out"
+            type="button">
+            Login
+          </button>
+          <?php
+        endif;
+        ?>
+      </div>
 
       <!-- Main modal -->
       <div id="authentication-modal" tabindex="-1" aria-hidden="true"
@@ -79,11 +102,11 @@
             </div>
             <!-- Modal body -->
             <div class="p-4 md:p-5">
-              <form class="space-y-4" action="#">
+              <form class="space-y-4" action="action.php" method="POST">
                 <div>
-                  <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
+                  <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
                     email</label>
-                  <input type="email" name="email" id="email"
+                  <input type="email" name="username" id="username"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                     placeholder="name@company.com" required />
                 </div>
@@ -95,18 +118,9 @@
                     required />
                 </div>
                 <div class="flex justify-between">
-                  <div class="flex items-start">
-                    <div class="flex items-center h-5">
-                      <input id="remember" type="checkbox" value=""
-                        class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
-                        required />
-                    </div>
-                    <label for="remember" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember
-                      me</label>
-                  </div>
                   <a href="#" class="text-sm text-blue-700 hover:underline dark:text-blue-500">Lost Password?</a>
                 </div>
-                <button type="submit"
+                <button type="submit" name="login"
                   class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login
                   to your account</button>
                 <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
