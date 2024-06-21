@@ -49,33 +49,88 @@ session_start()
           </li>
         </ul>
       </div>
-
-
       <div class="flex gap-2">
-        <?php
-        if (isset($_SESSION["admin_logged_in"]) && $_SESSION["admin_logged_in"] === true):
-          ?>
-          <a href="admin/index.php"
-            class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Dashboard</a>
-
-          <!-- Modal toggle -->
-          <form method="POST" action="action.php" name="logout">
-            <button type="submit"
-              class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
-              Log out</button>
-          </form>
-
-          <?php
-        else:
-          ?>
-          <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
-            class="block text-white bg-black hover:bg-white hover:text-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 transition hover:duration-300 ease-in-out"
-            type="button">
-            Login
-          </button>
-          <?php
-        endif;
-        ?>
+        <div class="flex items-center">
+          <div class="flex items-center">
+            <div>
+              <button type="button"
+                class="flex text-sm bg-white p-1 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                aria-expanded="false" data-dropdown-toggle="dropdown-user">
+                <span class="sr-only">Open user menu</span>
+                <?php
+              if (isset($_SESSION["admin_logged_in"]) && $_SESSION["admin_logged_in"] === true):
+                ?>
+                <img class="w-8 h-8 rounded-full" src="asset/bussiness-man.png" alt="user photo">
+                <?php 
+                else:
+                  ?>
+                  <img class="w-8 h-8 rounded-full" src="asset/user.png" alt="user photo">
+                  <?php endif?>
+              </button>
+            </div>
+            <div
+              class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600 "
+              id="dropdown-user">
+              <?php
+              if (isset($_SESSION["admin_logged_in"]) && $_SESSION["admin_logged_in"] === true):
+                ?>
+                <div class="px-4 py-3" role="none">
+                  <p class="text-sm text-gray-900 dark:text-white" role="none">
+                    Neil Sims
+                  </p>
+                  <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
+                    neil.sims@flowbite.com
+                  </p>
+                </div>
+                <ul class="p-1" role="none">
+                  <li>
+                    <a href="#"
+                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                      role="menuitem">Settings</a>
+                  </li>
+                  <li>
+                    <a href="#"
+                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                      role="menuitem">Earnings</a>
+                  </li>
+                  <li>
+                    <a href="admin/index.php"
+                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                      role="menuitem">Dashboard</a>
+                  </li>
+                  <li>
+                    <form method="POST" action="action.php" name="logout">
+                      <button type="submit" name="logout"
+                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                        role="menuitem">Sign out</button>
+                    </form>
+                  </li>
+                </ul>
+                <?php
+              else:
+                ?>
+                <ul class="space-y-2 p-2">
+                  <li>
+                    <a data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
+                      class="block px-8 py-2 bg-black text-xs text-center text-white rounded-3xl hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                      role="menuitem">
+                      Sign In
+                    </a>
+                  </li>
+                  <li>
+                    <a data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
+                      class="block px-8 py-2 bg-black text-xs text-center text-white rounded-3xl hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                      role="menuitem">
+                      Sign Up
+                    </a>
+                  </li>
+                  <?php
+              endif;
+              ?>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Main modal -->
