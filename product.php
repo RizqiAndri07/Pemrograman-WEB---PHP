@@ -1,4 +1,4 @@
-<div class="container p-4 grid grid-cols-4 gap-3">
+<div class=" p-4 grid grid-cols-5 gap-3 ">
     <?php
     include ('config.php'); //memanggil file koneksi
     $sql = mysqli_query($conn, "SELECT * FROM barang INNER JOIN merk ON barang.id_merk=merk.id_merk;");
@@ -10,9 +10,10 @@
 
         <div
             class="w-full max-w-sm bg-white border border-gray-200 rounded-lg hover:shadow hover:scale-y-105 transition duration-0 hover:duration-300 ease-in-out">
-            <a href="#">
-                <img class="p-8 rounded-t-lg" src="uploads/<?= $datas['image'] ?>" alt="product image" />
-            </a>
+            <div class="max-w-xs h-48">
+                <img class="p-8 rounded-t-lg w-full h-full object-cover" src="uploads/<?= $datas['image'] ?>"
+                    alt="product image" />
+            </div>
             <div class="px-5 pb-5">
                 <a href="#">
                     <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white"><?= $datas['name'] ?>
@@ -29,5 +30,6 @@
                 </div>
             </div>
         </div>
+
     <?php endwhile ?>
 </div>
