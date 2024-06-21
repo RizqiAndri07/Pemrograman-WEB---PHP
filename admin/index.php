@@ -53,9 +53,14 @@
                             </div>
                             <ul class="py-1" role="none">
                                 <li>
-                                    <a href="#"
+                                    <a href="index.php"
                                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                                         role="menuitem">Dashboard</a>
+                                </li>
+                                <li>
+                                    <a href="../"
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                        role="menuitem">Home</a>
                                 </li>
                                 <li>
                                     <a href="#"
@@ -63,14 +68,11 @@
                                         role="menuitem">Settings</a>
                                 </li>
                                 <li>
-                                    <a href="#"
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                                        role="menuitem">Earnings</a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                                        role="menuitem">Sign out</a>
+                                    <form method="POST" action="../action.php" name="logout">
+                                        <button type="submit" name="logout"
+                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                            role="menuitem">Sign out</button>
+                                    </form>
                                 </li>
                             </ul>
                         </div>
@@ -128,7 +130,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#"
+                    <a href="index.php?target=user"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -189,11 +191,13 @@
                 require ('dashboard.php');
             } else if ($_GET['target'] == 'product') {
                 require ('product.php');
+            } else if ($_GET['target'] == 'user') {
+                require ('user.php');
             } else {
                 require ('error.php');
             }
             ?>
-            
+
         </div>
     </div>
 

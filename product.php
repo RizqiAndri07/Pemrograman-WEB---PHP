@@ -24,8 +24,8 @@
                 <div class="flex items-center justify-between">
                     <span class="text-sm font-bold text-gray-900 dark:text-white">Rp
                         <?= number_format($datas['price'], 0, ',', '.') ?></span>
-                    <button href="index.php?target=cart"
-                        class="text-white border-2 rounded-full bg-black hover:bg-white hover:text-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm px-5 py-2 text-center dark:bg-blue-600 dark:hover:bg-white dark:focus:ring-blue-800 transition hover:duration-300 ease-in-out ">Buy</button>
+                    <a href="index.php?target=cart"
+                        class="text-white border-2 rounded-full bg-black hover:bg-white hover:text-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm px-5 py-2 text-center dark:bg-blue-600 dark:hover:bg-white dark:focus:ring-blue-800 transition hover:duration-300 ease-in-out ">Buy</a>
                 </div>
             </div>
         </div>

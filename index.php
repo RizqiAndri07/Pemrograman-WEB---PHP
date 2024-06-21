@@ -1,6 +1,6 @@
 <?php
-session_start()
-  ?>
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -58,14 +58,15 @@ session_start()
                 aria-expanded="false" data-dropdown-toggle="dropdown-user">
                 <span class="sr-only">Open user menu</span>
                 <?php
-              if (isset($_SESSION["admin_logged_in"]) && $_SESSION["admin_logged_in"] === true):
-                ?>
-                <img class="w-8 h-8 rounded-full" src="asset/bussiness-man.png" alt="user photo">
-                <?php 
+                session_start();
+                if (isset($_SESSION["admin_logged_in"]) && $_SESSION["admin_logged_in"] === true):
+                  ?>
+                  <img class="w-8 h-8 rounded-full" src="asset/bussiness-man.png" alt="user photo">
+                  <?php
                 else:
                   ?>
                   <img class="w-8 h-8 rounded-full" src="asset/user.png" alt="user photo">
-                  <?php endif?>
+                <?php endif ?>
               </button>
             </div>
             <div
@@ -110,15 +111,16 @@ session_start()
               else:
                 ?>
                 <ul class="space-y-2 p-2">
-                  <li>
+                  <li class="w-72">
                     <a data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
                       class="block px-8 py-2 bg-black text-xs text-center text-white rounded-3xl hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                       role="menuitem">
                       Sign In
                     </a>
                   </li>
+
                   <li>
-                    <a data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
+                    <a data-modal-target="authentication-modal-signup" data-modal-toggle="authentication-modal-signup"
                       class="block px-8 py-2 bg-black text-xs text-center text-white rounded-3xl hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                       role="menuitem">
                       Sign Up
@@ -134,6 +136,72 @@ session_start()
       </div>
 
       <!-- Main modal -->
+      <div id="authentication-modal-signup" tabindex="-1" aria-hidden="true"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-md max-h-full">
+          <!-- Modal content -->
+          <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <!-- Modal header -->
+            <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                Sign Up to our platform
+              </h3>
+              <button type="button"
+                class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                data-modal-hide="authentication-modal-signup">
+                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                  viewBox="0 0 14 14">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                </svg>
+                <span class="sr-only">Close modal</span>
+              </button>
+            </div>
+            <!-- Modal body -->
+            <div class="p-4 md:p-5">
+              <form class="space-y-4" action="daftar.php" method="POST" enctype="multipart/form-data">
+                <div>
+                  <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
+                    email</label>
+                  <input type="text" name="username" id="username"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                    placeholder="username" required />
+                </div>
+                <div>
+                  <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
+                    email</label>
+                  <input type="email" name="email" id="email"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                    placeholder="email@gmail.com" required />
+                </div>
+                <div>
+                  <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
+                    password</label>
+                  <input type="password" name="password" id="password" placeholder="••••••••"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                    required />
+                </div>
+                <!-- <div>
+
+                  <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Upload
+                    Profile</label>
+                  <input
+                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                    aria-describedby="file_input_help" id="file_input" type="file">
+                  <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or
+                    GIF (MAX. 800x400px).</p>
+
+                </div> -->
+
+                <button type="submit" name="daftar"
+                  class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Create
+                  account</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- SIGN IN MODAL -->
       <div id="authentication-modal" tabindex="-1" aria-hidden="true"
         class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative p-4 w-full max-w-md max-h-full">
@@ -161,9 +229,9 @@ session_start()
                 <div>
                   <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
                     email</label>
-                  <input type="email" name="username" id="username"
+                  <input type="text" name="username" id="username"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                    placeholder="name@company.com" required />
+                    placeholder="username" required />
                 </div>
                 <div>
                   <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your

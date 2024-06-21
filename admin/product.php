@@ -8,6 +8,7 @@ $result_products = mysqli_query($conn, $sql_products);
 
 $sql_merks = "SELECT * FROM merk";
 $result_merks = mysqli_query($conn, $sql_merks);
+
 ?>
 
 <div class="flex justify-center">
@@ -41,7 +42,7 @@ $result_merks = mysqli_query($conn, $sql_merks);
                 </button>
             </div>
             <!-- Modal body -->
-            <form class="p-4 md:p-5" action="../action.php" method="post">
+            <form class="p-4 md:p-5" action="../action.php" method="post" enctype="multipart/form-data">
                 <div class="grid gap-4 mb-4 grid-cols-2">
                     <div class="col-span-2">
                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product
@@ -81,7 +82,7 @@ $result_merks = mysqli_query($conn, $sql_merks);
                             for="file_input">Upload file</label>
                         <input
                             class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                            aria-describedby="file_input_help" id="file_input" type="file">
+                            aria-describedby="file_input_help" id="file_input" type="file" name="image">
                         <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or
                             GIF (MAX. 800x400px).</p>
 
@@ -107,7 +108,7 @@ $result_merks = mysqli_query($conn, $sql_merks);
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" class="px-6 py-3">
-                    Id 
+                    Id
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Product name
